@@ -127,8 +127,16 @@
       }
 
       function playNext() {
-        player.loadVideoById("https://youtu.be/qCEaHs1yXe0", 0);
+        player.loadVideoById(
+          getVideoIdFromURL("https://youtu.be/qCEaHs1yXe0"),
+          0
+        );
         player.playVideo();
+      }
+
+      function getVideoIdFromURL(url) {
+        const videoId = url.split("/").pop();
+        return videoId;
       }
     </script>
   </body>
