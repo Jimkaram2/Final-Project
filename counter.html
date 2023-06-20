@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Counter</title>
+    <style>
+      body {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: #fff;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        padding: 25px;
+        margin: 0;
+        margin-top: auto;
+      }
+
+      h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+
+      .counter {
+        font-size: 72px;
+        margin-bottom: 30px;
+      }
+
+      .counter-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      .counter-btn {
+        font-size: 24px;
+        padding: 10px 20px;
+        background-color: #fff;
+        color: #333;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .counter-btn:hover {
+        background-color: #f5f5f5;
+      }
+
+      .positive {
+        color: green;
+      }
+
+      .negative {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Counter made by Jim</h1>
+    <div class="counter-container">
+      <button class="counter-btn" onclick="decrement()">-</button>
+      <span class="counter" id="counter">0</span>
+      <button class="counter-btn" onclick="increment()">+</button>
+    </div>
+
+    <script>
+      const counterElement = document.getElementById("counter");
+
+      let counter = 0;
+
+      function updateCounter() {
+        counterElement.textContent = counter;
+
+        if (counter > 0) {
+          counterElement.classList.remove("negative");
+          counterElement.classList.add("positive");
+        } else if (counter < 0) {
+          counterElement.classList.remove("positive");
+          counterElement.classList.add("negative");
+        } else {
+          counterElement.classList.remove("positive", "negative");
+        }
+      }
+
+      function increment() {
+        counter++;
+        updateCounter();
+      }
+
+      function decrement() {
+        counter--;
+        updateCounter();
+      }
+    </script>
+  </body>
+</html>

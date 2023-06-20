@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Color Generator by Jim</title>
+    <style>
+      body {
+        background-color: #f2f2f2;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        transition: background-color 0.5s ease;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      .button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: transparent;
+        color: #000000;
+        border: solid;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      .background-label {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Random Color Generator by Jim</h1>
+    <p class="background-label" id="backgroundLabel">Background Color:</p>
+    <button class="button" onclick="changeColor()">Change Color</button>
+    <script>
+      const backgroundLabel = document.getElementById("backgroundLabel");
+      const button = document.querySelector(".button");
+
+      const colorMap = {
+        "#FF0000": "Red",
+        "#00FF00": "Green",
+        "#0000FF": "Blue",
+        "#FFFF00": "Yellow",
+        "#FF00FF": "Magenta",
+        "#00FFFF": "Cyan",
+        "#FFA500": "Orange",
+        "#800080": "Purple",
+        "#008000": "Dark Green",
+        "#800000": "Maroon",
+        "#FFC0CB": "Pink",
+        "#FFD700": "Gold",
+        "#FF8C00": "Dark Orange",
+        "#00FF7F": "Spring Green",
+        "#000080": "Navy",
+        "#808080": "Gray",
+        "#008080": "Teal",
+        "#FF1493": "Deep Pink",
+        "#7CFC00": "Lawn Green",
+        "#A52A2A": "Brown",
+        "#FF4500": "Orange Red",
+      };
+
+      function getRandomColor() {
+        const colors = Object.keys(colorMap);
+        const randomIndex = Math.floor(Math.random() * colors.length);
+        return colors[randomIndex];
+      }
+
+      function changeColor() {
+        const randomColor = getRandomColor();
+        document.body.style.backgroundColor = randomColor;
+        backgroundLabel.textContent =
+          "Background Color: " + colorMap[randomColor];
+      }
+    </script>
+  </body>
+</html>

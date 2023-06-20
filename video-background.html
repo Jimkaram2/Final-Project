@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Video Background</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #video-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+      }
+
+      #content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #fff;
+        font-family: Arial, sans-serif;
+      }
+
+      h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        color: #fff;
+      }
+
+      #play-pause {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      #play-btn,
+      #pause-btn {
+        font-size: 36px;
+        background-color: transparent;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+        outline: none;
+      }
+
+      #play-btn:hover,
+      #pause-btn:hover {
+        opacity: 0.7;
+      }
+
+      #play-next {
+        font-size: 24px;
+        padding: 10px 20px;
+        background-color: #fff;
+        color: #333;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        outline: none;
+      }
+
+      #play-next:hover {
+        background-color: #f5f5f5;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="video-container"></div>
+
+    <div id="content">
+      <h1>A video background page</h1>
+      <div id="play-pause">
+        <button id="play-btn">&#9658;</button>
+        <button id="pause-btn">&#10074;&#10074;</button>
+      </div>
+      <button id="play-next">Play Next</button>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+      let player;
+
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player("video-container", {
+          width: "100%",
+          height: "100%",
+          videoId: "CkwLYKb7rQ8",
+          playerVars: {
+            autoplay: 1,
+            loop: 1,
+            controls: 0,
+            showinfo: 0,
+            mute: 1,
+            modestbranding: 1,
+          },
+          events: {
+            onReady: onPlayerReady,
+          },
+        });
+      }
+
+      function onPlayerReady(event) {
+        const playBtn = document.getElementById("play-btn");
+        const pauseBtn = document.getElementById("pause-btn");
+        const playNextBtn = document.getElementById("play-next");
+
+        playBtn.addEventListener("click", playVideo);
+        pauseBtn.addEventListener("click", pauseVideo);
+        playNextBtn.addEventListener("click", playNext);
+      }
+
+      function playVideo() {
+        player.playVideo();
+      }
+
+      function pauseVideo() {
+        player.pauseVideo();
+      }
+
+      function playNext() {
+        player.loadVideoById("https://youtu.be/qCEaHs1yXe0", 0);
+        player.playVideo();
+      }
+    </script>
+  </body>
+</html>

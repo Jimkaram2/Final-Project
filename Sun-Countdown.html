@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sun Explosion Countdown</title>
+    <style>
+      body {
+        background-color: #222;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 50px;
+      }
+
+      h1 {
+        font-size: 48px;
+        margin-bottom: 30px;
+      }
+
+      #countdown {
+        font-size: 64px;
+        letter-spacing: 4px;
+        margin-bottom: 50px;
+      }
+
+      img {
+        max-width: 300px;
+        margin-bottom: 30px;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .box {
+        background-color: #333;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img
+        src="https://starlust.org/wp-content/uploads/2023/01/solar-winds-hitting-planets-1024x1024.jpg"
+        alt="Sun"
+      />
+      <h1>Sun Explosion Countdown</h1>
+      <div id="countdown" class="box"></div>
+    </div>
+
+    <script>
+      // Set the date of the Sun's explosion (just for demonstration)
+      const explosionDate = new Date("2077-01-01T00:00:00Z");
+
+      // Update the countdown every second
+      const countdownInterval = setInterval(updateCountdown, 1000);
+
+      function updateCountdown() {
+        const currentDate = new Date();
+        const timeDifference = explosionDate - currentDate;
+
+        // If the countdown has reached zero or gone negative, display explosion message
+        if (timeDifference <= 0) {
+          clearInterval(countdownInterval);
+          document.getElementById("countdown").innerText = "BOOM!";
+          return;
+        }
+
+        // Calculate the remaining days, hours, minutes, and seconds
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor(
+          (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+        );
+        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        // Display the countdown
+        document.getElementById(
+          "countdown"
+        ).innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+    </script>
+  </body>
+</html>
